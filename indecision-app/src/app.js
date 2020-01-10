@@ -1,7 +1,43 @@
 console.log('App.js is running!');
 
-// JSX - JavaScript XML
-var template = <p>This is JSX from app.js!</p>;
-var appRoot = document.getElementById('#app');
+const app = {
+    title: 'Indecision App',
+    subtitle: 'Put your life in the hands of a computer',
+    options: ['One', 'Two']
+};
+const template = (
+    <div>
+        <h1>{app.title}</h1>
+        {app.subtitle && <p>{app.subtitle}</p>}
+        <p>{app.options.length > 0 ? 'Here are your options:' : 'No options available'}</p>
+        <ol>
+            <li>Item one</li>
+            <li>Item two</li>
+        </ol>
+    </div>
+);
 
-ReactDOM.render(template, appRoot);
+const user = {
+    name: 'Ryan',
+    age: 26,
+    location: 'Gilbert'
+};
+const getLocation = (location) => {
+    if (location) {
+        return <p>Location: {location}</p>;
+    }
+};
+const userName = 'Ryan';
+const userAge = 26;
+const userLocation = 'Phoenix';
+const templateTwo = (
+    <div>
+        <h1>{user.name ? user.name : 'Anonymous'}</h1>
+        {(user.age && user.age >= 18) && <p>Age: {user.age}</p>}
+        {getLocation(user.location)}
+    </div>
+);
+
+const appRoot = document.getElementById('app');
+
+ReactDOM.render(templateTwo, appRoot);
