@@ -1,89 +1,59 @@
 'use strict';
 
-console.log('App.js is running!');
+console.log('Toggle app!');
 
 var app = {
-    title: 'Indecision App',
-    subtitle: 'Put your life in the hands of a computer',
-    options: ['One', 'Two']
-};
-var template = React.createElement(
-    'div',
-    null,
-    React.createElement(
-        'h1',
-        null,
-        app.title
-    ),
-    app.subtitle && React.createElement(
-        'p',
-        null,
-        app.subtitle
-    ),
-    React.createElement(
-        'p',
-        null,
-        app.options.length > 0 ? 'Here are your options:' : 'No options available'
-    ),
-    React.createElement(
-        'ol',
-        null,
-        React.createElement(
-            'li',
-            null,
-            'Item one'
-        ),
-        React.createElement(
-            'li',
-            null,
-            'Item two'
-        )
-    )
-);
-
-var count = 0;
-var addOne = function addOne() {
-    count++;
-    renderCounterApp();
-};
-var minusOne = function minusOne() {
-    count--;
-    renderCounterApp();
-};
-var reset = function reset() {
-    count = 0;
-    renderCounterApp();
+    title: 'Visibility App',
+    subtitle: ''
 };
 
-var appRoot = document.getElementById('app');
+var string = void 0;
+var buttonText = 'Show Details';
 
-var renderCounterApp = function renderCounterApp() {
-    var templateTwo = React.createElement(
+var showString = function showString() {
+    string = 'Apple is best, yo.';
+    buttonText = 'Hide Details';
+    render();
+};
+
+var hideString = function hideString() {
+    string = '';
+    buttonText = 'Show Details';
+    render();
+};
+
+var showHide = function showHide() {
+    if (buttonText === 'Show Details') {
+        showString();
+    } else {
+        hideString();
+    }
+};
+
+var render = function render() {
+    var template = React.createElement(
         'div',
         null,
         React.createElement(
             'h1',
             null,
-            'Count: ',
-            count
+            app.title
         ),
         React.createElement(
             'button',
-            { onClick: addOne },
-            '+1'
+            { id: 'show', onClick: showHide },
+            buttonText
         ),
         React.createElement(
-            'button',
-            { onClick: minusOne },
-            '-1'
-        ),
-        React.createElement(
-            'button',
-            { onClick: reset },
-            'Reset'
+            'p',
+            null,
+            string
         )
     );
-    ReactDOM.render(templateTwo, appRoot);
+
+    ReactDOM.render(template, appRoot);
 };
 
-renderCounterApp();
+var appRoot = document.getElementById('app');
+
+render();
