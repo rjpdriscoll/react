@@ -1,59 +1,37 @@
 'use strict';
 
-console.log('Toggle app!');
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var app = {
-    title: 'Visibility App',
-    subtitle: ''
-};
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var string = void 0;
-var buttonText = 'Show Details';
+var Person = function () {
+    function Person() {
+        var name = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'Anonymous';
+        var age = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0;
 
-var showString = function showString() {
-    string = 'Apple is best, yo.';
-    buttonText = 'Hide Details';
-    render();
-};
+        _classCallCheck(this, Person);
 
-var hideString = function hideString() {
-    string = '';
-    buttonText = 'Show Details';
-    render();
-};
-
-var showHide = function showHide() {
-    if (buttonText === 'Show Details') {
-        showString();
-    } else {
-        hideString();
+        this.name = name;
+        this.age = age;
     }
-};
 
-var render = function render() {
-    var template = React.createElement(
-        'div',
-        null,
-        React.createElement(
-            'h1',
-            null,
-            app.title
-        ),
-        React.createElement(
-            'button',
-            { id: 'show', onClick: showHide },
-            buttonText
-        ),
-        React.createElement(
-            'p',
-            null,
-            string
-        )
-    );
+    _createClass(Person, [{
+        key: 'getGreeting',
+        value: function getGreeting() {
+            return 'Hi, my name is ' + this.name + '!';
+        }
+    }, {
+        key: 'getDescription',
+        value: function getDescription() {
+            return this.name + ' is ' + this.age + ' year(s) old.';
+        }
+    }]);
 
-    ReactDOM.render(template, appRoot);
-};
+    return Person;
+}();
 
-var appRoot = document.getElementById('app');
+var me = new Person('Ryan Driscoll', 26);
+console.log(me.getDescription());
 
-render();
+var other = new Person();
+console.log(other.getDescription());
